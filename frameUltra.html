@@ -1,0 +1,923 @@
+<!--
+* ***********************************Copyright © 2021 Avantpro - Direitos Autorais******************************************
+*  Esse código possui Registro de Propriedade Intelectual pelo INPI conforme Processo Nº: BR512022000916-1
+*  Registro disponível para acesso em: http://ramsolution.com.br/registro-de-propriedade-intelectual.pdf
+*  Qualquer reprodução (total ou parcial) do código presente na extensão Avantpro, sem a prévia autorização, 
+*  é proibida e será penalizada conforme o código penal.
+* **************************************************************************************************************************
+*/
+-->
+
+<!DOCTYPE html>
+<html style="min-width: 500px;">
+
+<head>
+    <title>Avantpro</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+    <script src="script.js"></script>
+    <script src="/src/js/libs/jquery.maskMoney.min.js"></script>
+    <script src="/src/js/libs/jquery-dateformat.min.js"></script>
+    <script src="/src/js/libs/moment.min.js"></script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            display: block;
+            width: 100%;
+            overflow-x: hidden;
+            background-color: #ededed;
+        }
+
+        .inputcard {
+            width: 20px !important;
+        }
+
+        .default-table-height {
+            height: 45px;
+        }
+
+        .defaultsmall-table-height {
+            height: 15px;
+        }
+
+        .low-line {
+            height: 1.8rem;
+        }
+
+        .text-small {
+            font-size: 14px;
+        }
+
+        .ml-green {
+            background-color: #39b54a !important
+        }
+
+        .ml-lowgreen {
+            background-color: #cfee6f !important
+        }
+
+        .ml-yellow {
+            background-color: #fdf880 !important
+        }
+
+        .ml-organge {
+            background-color: #f5c827 !important
+        }
+
+        .ml-highorgange {
+            background-color: #ef9b76 !important
+        }
+
+        .ml-green-font {
+            color: #709979
+        }
+
+        .ml-blue-font {
+            color: #1E90FF;
+        }
+
+        .pgbar {
+            height: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+
+        .unselected {
+            opacity: 0.5;
+        }
+
+        .card-title {
+            font-size: 16px;
+        }
+
+        .card-content {
+            font-size: 14px;
+        }
+
+        .form-control {
+            height: 35px;
+        }
+
+        .obs {
+            font-size: 12px;
+            color: #84a2bc;
+            margin-left: -45px;
+        }
+
+        .footer-ext {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            background-color: #ededed;
+        }
+
+        .header-ext {
+            top: 0px;
+            width: 100%;
+            padding-bottom: 5px;
+            background-color: #ededed;
+        }
+
+        .card-content-vermelho {
+            font-size: 17px;
+            color: red;
+        }
+
+
+        .card-content-verde {
+            font-size: 17px;
+            color: #32CD32;
+        }
+
+        #custofinal {
+            color: red;
+            font-weight: bold;
+        }
+
+        #lucro {
+            color: #32CD32;
+            font-weight: bold;
+        }
+
+        .containerMaior {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #nomes {
+            background: #fff;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 12%);
+            padding: 10px;
+        }
+
+        #grafico {
+            background: #fff;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 12%);
+            padding: 10px;
+        }
+
+        #criar {
+            background: #0dc143;
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 15px;
+            width: 100%;
+            height: 35px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        .svg-icon {
+            width: 1.3em;
+            height: 1.3em;
+        }
+
+        .svg-icon path,
+        .svg-icon polygon,
+        .svg-icon rect {
+            fill: white;
+        }
+
+        .svg-icon circle {
+            stroke: white;
+            stroke-width: 1;
+        }
+
+
+        .tabMenu {
+            width: 100%;
+        }
+
+        /*esconde o radio button*/
+        .tabMenu .impMenu[type] {
+            display: none;
+        }
+
+
+        /*nossos próprios botões*/
+        .tabMenu .lblMenu {
+            display: block;
+            float: left;
+            padding: 5px;
+            margin-right: 5px;
+            margin-left: 15px;
+            border-left: 1px solid #3A5FCD;
+            border-right: 1px solid #3A5FCD;
+            border-top: 1px solid #3A5FCD;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            cursor: pointer;
+        }
+
+        /*ataca o label com hover e o radio button checkado*/
+        .tabMenu .lblMenu:hover,
+        .tabMenu .impMenu:checked+.lblMenu {
+            background: #3A5FCD;
+            color: #fff;
+        }
+
+        /*o conteúdo que mudar ao clicar nos boões*/
+        .tabs {
+            clear: both;
+        }
+
+        /*aqui a nossa content*/
+        .tabs .content {
+            display: flex;
+            width: 100%;
+            position: absolute;
+            justify-content: space-between;
+            opacity: 0;
+        }
+
+        /*aqui estão nosso links*/
+        #tab1:checked~.tabs .content:nth-of-type(1),
+        #tab2:checked~.tabs .content:nth-of-type(2),
+        #tab3:checked~.tabs .content:nth-of-type(3),
+        #tab4:checked~.tabs .content:nth-of-type(4) {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+
+
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 5px;
+            margin-top: -8px;
+        }
+
+        td,
+        th {
+            border-right: 1px solid #dddddd;
+            text-align: center;
+            padding: 5px;
+            font-size: 11px;
+        }
+
+        tr {
+            line-height: 9px;
+        }
+
+        tr,
+        th {
+            text-align: center;
+            justify-content: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: white;
+        }
+
+        .btnPararAcompanhar {
+            background: red;
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100%;
+            height: 32px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        #btnPararAcompanharConcorrente {
+            background: red;
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100%;
+            height: 32px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        #btnAcompanhar {
+            background: #0dc143;
+            color: #fff;
+            border: 0;
+            border-radius: 10px;
+            font-size: 14px;
+            width: 17%;
+            height: 25px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        #btnAcompanharLoading {
+            background: gray;
+            color: #fff;
+            border: 0;
+            border-radius: 10px;
+            font-size: 14px;
+            width: 20%;
+            height: 25px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        #btnAcompanharConcorrente {
+            background: #0dc143;
+            color: #fff;
+            border: 0;
+            border-radius: 10px;
+            font-size: 14px;
+            width: 28%;
+            height: 25px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        #btnAcompanharConcorrenteLoading {
+            background: gray;
+            color: #fff;
+            border: 0;
+            border-radius: 10px;
+            font-size: 14px;
+            width: 25%;
+            height: 25px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            cursor: pointer;
+            align-self: center;
+        }
+
+
+        .p2-null {
+            background-image: url(https://i.ibb.co/sFJhrK0/Sem.png);
+            background-size: 18px;
+            background-repeat: no-repeat;
+            background-position: left;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .p2-silver {
+            background-image: url(https://i.ibb.co/6PjT8CV/Lider.png);
+            background-size: 18px;
+            background-repeat: no-repeat;
+            background-position: left;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .p2-gold {
+            background-image: url(https://i.ibb.co/DCK985Q/Gold.png);
+            background-size: 18px;
+            background-repeat: no-repeat;
+            background-position: left;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .p2-platinum {
+            background-image: url(https://i.ibb.co/b6Kztyw/Platinum.png);
+            background-size: 18px;
+            background-repeat: no-repeat;
+            background-position: left;
+            margin: 0;
+            margin-bottom: 5px;
+        }
+
+        .full {
+            color: #00a650;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 800;
+            font-style: italic;
+            font-size: 13px !important;
+        }
+
+        #beta {
+            color: gray;
+            font-size: 12px;
+            margin-top: -5px;
+        }
+
+        #comissaovlr {
+            font-size: 10px;
+        }
+
+        #comissao {
+            padding: 0.375rem 0.10rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        } 
+
+        .loader {
+            border: 16px solid lightgray;
+            border-radius: 50%;
+            border-top: 16px solid yellow;
+            width: 70px;
+            height: 70px;
+            -webkit-animation: spin 1s linear infinite;
+            /* Safari */
+            animation: spin 1s linear infinite;
+        }
+
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body class="ultra">
+    <div style="display: flex; justify-content: space-between; background-color: rgb(52, 152, 216);"
+        class="p-1 mb-2 text-white">
+        <div style="display: flex;">
+            <svg width="503" height="529" viewBox="0 0 503 529" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M180.575 64.866C201.361 14.5657 271.467 -49.4621 324.916 64.866C381.649 186.219 459.31 360.028 488.922 433.756C509.304 484.501 511.748 528.948 454.537 528.948C432.087 528.948 416.149 519.997 397.254 509.12C396.915 508.925 396.576 508.73 396.235 508.534C367.148 491.784 330.737 470.816 253.054 470.816C178.262 470.816 143.113 490.252 113.463 506.647C91.8362 518.607 73.135 528.948 44.1088 528.948C-4.81039 528.948 -8.95649 479.003 12.2642 433.756L45.9517 359.922L46.0485 359.71L180.575 64.866ZM236.782 173.436C244.125 158.597 257.196 154.494 266.12 173.436C275.628 193.618 293.166 232.834 299.125 247.672C302.589 256.624 299.125 273.884 282.816 268.092C275.35 265.441 272.03 260.377 268.917 255.629C265.156 249.893 261.698 244.619 251.601 244.619C240.729 244.619 236.121 250.77 231.602 256.802C227.742 261.955 223.946 267.021 216.365 268.092C202.824 270.006 199.696 255.989 203.202 247.672L236.782 173.436Z" fill="url(#paint0_linear_35_21)"/>
+                <path d="M396.235 508.533C367.148 491.783 330.737 470.816 253.054 470.816C178.262 470.816 143.113 490.252 113.463 506.647L113.463 506.647C91.8362 518.606 73.135 528.948 44.1088 528.948C-4.81039 528.948 -8.95649 479.003 12.2642 433.756L45.9973 359.822C135.44 313.658 297.194 451.5 396.235 508.533Z" fill="url(#paint1_linear_35_21)"/>
+                <defs>
+                <linearGradient id="paint0_linear_35_21" x1="251.109" y1="-132.003" x2="251.109" y2="737.323" gradientUnits="userSpaceOnUse">
+                <stop offset="0.380208" stop-color="#F2A008"/>
+                <stop offset="0.792994" stop-color="#F9D043"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear_35_21" x1="302.803" y1="439.737" x2="10.1936" y2="454.391" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#1B22B8"/>
+                <stop offset="1" stop-color="#4D43FA"/>
+                </linearGradient>
+                </defs>
+                </svg><span>&nbsp; Avantpro</span>
+        </div>
+        <div style="display: flex;">
+            <span id="nomeproduto"></span>
+        </div>
+        <div style="margin-right: 15px;">
+            <button id="fechar" style="background: none; color: white; border: none">Fechar
+                <svg class="svg-icon" viewBox="0 0 20 20">
+                    <path fill="none"
+                        d="M13.864,6.136c-0.22-0.219-0.576-0.219-0.795,0L10,9.206l-3.07-3.07c-0.219-0.219-0.575-0.219-0.795,0
+                        c-0.219,0.22-0.219,0.576,0,0.795L9.205,10l-3.07,3.07c-0.219,0.219-0.219,0.574,0,0.794c0.22,0.22,0.576,0.22,0.795,0L10,10.795
+                        l3.069,3.069c0.219,0.22,0.575,0.22,0.795,0c0.219-0.22,0.219-0.575,0-0.794L10.794,10l3.07-3.07
+                        C14.083,6.711,14.083,6.355,13.864,6.136z M10,0.792c-5.086,0-9.208,4.123-9.208,9.208c0,5.085,4.123,9.208,9.208,9.208
+                        s9.208-4.122,9.208-9.208C19.208,4.915,15.086,0.792,10,0.792z M10,18.058c-4.451,0-8.057-3.607-8.057-8.057
+                        c0-4.451,3.606-8.057,8.057-8.057c4.449,0,8.058,3.606,8.058,8.057C18.058,14.45,14.449,18.058,10,18.058z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+
+    <div>
+
+        <div class="tabMenu">
+            <input class="impMenu" type="radio" name="tabs" id="tab1" checked>
+            <label class="lblMenu" for="tab1">Ferramentas</label>
+
+            <input class="impMenu" type="radio" name="tabs" id="tab2">
+            <label class="lblMenu" for="tab2">Rastrear Anúncios</label>
+
+            <input class="impMenu" type="radio" name="tabs" id="tab3">
+            <label class="lblMenu" for="tab3">Rastrear Concorrentes</label>
+
+            <div class="tabs">
+                <div class="content">
+                    <div class="container">
+                        <div id="grafico" style=" height: 50%;">
+                            <div style="display: flex">
+                                <h5 class="card-title ml-blue-font">Visitas do Anúncio</h5>
+                                <small
+                                    style="font-size: 12px; color: gray; margin-left: 10px; align-self: center; margin-bottom: .5rem;">
+                                    (Mensal)
+                                </small>
+                            </div>
+                            <div>
+                                <center>
+                                    <p id="semanuncio" style="display: none"></p>
+                                </center>
+                                <div id="loadingframe">
+                                    <center>
+                                        <div class="loader"></div>
+                                        <p><strong>Carregando dados Avantpro...</strong></p>
+                                    </center>
+                                </div>
+                                <center>
+                                    <p id="errografico"></p>
+                                </center>
+                                <canvas id="myChart" style="width:100%; height: 220px;"></canvas>
+                            </div>
+                        </div>
+
+
+                        <div id="nomes" style="height: 44%;">
+                            <div style="display: flex">
+                                <h5 class="card-title ml-blue-font">Criador de Titulos Com Código de Barras</h5>
+                                <strong><small
+                                        style="font-size: 12px; color: gray; margin-left: 10px; align-self: center; margin-bottom: .5rem;">(Digite
+                                        os termos separando por vírgula, conforme exemplo abaixo)
+                                    </small></strong>
+                            </div>
+
+                            <div id="dados2">
+                                <div class="row default-table-height" style="height: 30px">
+                                    <div class="col col-sm-6">
+                                        <span>Nome do produto</span>
+                                    </div>
+                                    <div class="col col-sm-6">
+                                        <span>Subnomes relacionados ao produto</span>
+                                    </div>
+                                </div>
+
+                                <div class="row default-table-height">
+                                    <div class="col col-sm-6">
+                                        <input class="form-control" id="nome" style="width: 100%" type="text"
+                                            maxlength="55" placeholder="Ex: Trio Nicho Redondo, Nicho Bebê"></input>
+                                    </div>
+                                    <div class="col col-sm-6">
+                                        <input class="form-control" id="subnome" style="width: 100%" type="text"
+                                            maxlength="55" placeholder="Ex: Quarto de Bebê, Com Led"></input>
+                                    </div>
+                                </div>
+
+                                <div class="row default-table-height" style="height: 30px">
+                                    <div class="col col-sm-6">
+                                        <span>Vantagens do produto</span>
+                                    </div>
+                                    <div class="col col-sm-6">
+                                        <span>Quebra de objeção</span>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row default-table-height">
+                                    <div class="col col-sm-6">
+                                        <input class="form-control" id="vantagem" style="width: 100%" type="text"
+                                            maxlength="55" placeholder="Ex: Pintado, Branco, Kit C/ 3"></input>
+                                    </div>
+                                    <div class="col col-sm-6">
+                                        <input class="form-control" id="objecao" style="width: 100%" type="text"
+                                            maxlength="55" placeholder="Ex: Pronta Entrega, Envio Imediato"></input>
+                                    </div>
+                                </div>
+
+                                <div class="row default-table-height">
+                                    <div class="col col-sm-12">
+                                        <button id="criar">Criar Titulos</button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                    <div style="width: 50%" class="container" style="background-color: #ededed;">
+
+                        <div class="row" style="height: 54%; margin-bottom: 20px">
+                            <div class="card" style="width: 465px;">
+                                <div class="card-body" style="width: 465px">
+                                    <h5 class="card-title ml-blue-font">Tarifas e Custos da Venda</h5>
+                                    <div class="container">
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="18" height="19"
+                                                        viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M24 3.875l-6 1.221 1.716 1.708-5.351 5.358-3.001-3.002-7.336 7.242 1.41 1.418 5.922-5.834 2.991 2.993 6.781-6.762 1.667 1.66 1.201-6.002zm0 16.125v2h-24v-20h2v18h22z" />
+                                                    </svg> Comiss&atilde;o ML</p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <select name="comissao" id="comissao">
+                                                    <option value="premium">Premium</option>
+                                                    <option value="classico">Classico</option>
+                                                </select>
+                                                <label id="comissaovlr"></label>
+                                            </div>
+                                        </div>
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        fill="currentColor" class="bi bi-truck" viewBox="0 0 18 18">
+                                                        <path
+                                                            d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+                                                    </svg> Outros Custos ML <strong>*</strong>
+                                                </p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <input class="form-control" id="custoenvio"  data-index="1" tabindex="1">
+                                            </div>
+                                        </div>
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        fill="currentColor" class="bi bi-percent" viewBox="0 0 18 18">
+                                                        <path
+                                                            d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                                    </svg> Alíquota de Impostos %</p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <input class="form-control" id="imposto"  data-index="2" tabindex="2">
+                                            </div>
+                                        </div>
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        fill="currentColor" class="bi bi-basket2" viewBox="0 0 18 18">
+                                                        <path
+                                                            d="M4 10a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 0 1-2 0v-2zm3 0a1 1 0 1 1 2 0v2a1 1 0 0 1-2 0v-2z" />
+                                                        <path
+                                                            d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-.623l-1.844 6.456a.75.75 0 0 1-.722.544H3.69a.75.75 0 0 1-.722-.544L1.123 8H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM2.163 8l1.714 6h8.246l1.714-6H2.163z" />
+                                                    </svg> Custo do Produto</p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <input class="form-control" id="custototal"  data-index="3" tabindex="3">
+                                            </div>
+                                        </div>
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content-vermelho">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        fill="currentColor" class="bi bi-cash" viewBox="0 0 18 18">
+                                                        <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                                                        <path
+                                                            d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" />
+                                                    </svg> Custo Total
+                                                </p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <label id="custofinal"></label>
+                                            </div>
+                                        </div>
+                                        <div class="row defaultsmall-table-height">
+                                            <div class="col col-sm-12">
+                                                <center><small style="font-size: 12px" class="obs">* Frete Grátis Acima
+                                                        de R$
+                                                        79,00
+                                                        ou R$ 5,00 Fixo por Anúncio Abaixo de R$ 79,00</small></center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="height: 38%;">
+                            <div class="card" style="width: 465px;">
+                                <div class="card-body" style="width: 465px">
+                                    <h5 class="card-title ml-blue-font">Precifica&ccedil;&atilde;o da Venda</h5>
+                                    <div class="container">
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content align-middle"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="18" height="19"
+                                                        viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M24 3.875l-6 1.221 1.716 1.708-5.351 5.358-3.001-3.002-7.336 7.242 1.41 1.418 5.922-5.834 2.991 2.993 6.781-6.762 1.667 1.66 1.201-6.002zm0 16.125v2h-24v-20h2v18h22z" />
+                                                    </svg> Pre&ccedil;o de Venda</p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <input class="form-control" id="preco"  data-index="4" tabindex="4">
+                                            </div>
+                                        </div>
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        fill="currentColor" class="bi bi-percent" viewBox="0 0 18 18">
+                                                        <path
+                                                            d="M13.442 2.558a.625.625 0 0 1 0 .884l-10 10a.625.625 0 1 1-.884-.884l10-10a.625.625 0 0 1 .884 0zM4.5 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm7 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                                    </svg> Margem de Lucro %</p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <label class="col col-sm-6" id="margem"></label>
+                                            </div>
+                                        </div>
+                                        <div class="row default-table-height">
+                                            <div class="col col-sm-6">
+                                                <p class="card-text card-content-verde"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                                        fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 18 18">
+                                                        <path fill-rule="evenodd"
+                                                            d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" />
+                                                        <path
+                                                            d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" />
+                                                        <path
+                                                            d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" />
+                                                        <path
+                                                            d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" />
+                                                    </svg> Lucro Líquido</p>
+                                            </div>
+                                            <div class="col col-sm-6">
+                                                <label class="col col-sm-6" id="lucro"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="content">
+                    <div style="width: 100%; padding: 0px 15px; margin-bottom: 15px">
+                        <div
+                            style="border-top: 2px solid #3498d8; background-color: #fff; height: 85px; width: 100%; padding: 1px 10px; border-radius: 4px; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 12%);">
+                            <center>
+                                <small id="beta">Qualquer problema com esse recurso reportar para:
+                                    <strong>mlpro@ramsolution.com.br</strong>
+                                </small>
+                            </center>
+                            <p style="margin-bottom: 5px; font-size: 14px">Esse recurso te permite monitorar até 50
+                                anúncios durante 7 dias. Os dados são atualizados todo dia de madrugada. Caso deseje
+                                acompanhar
+                                esse anúncio, basta clicar no botão abaixo:
+                            </p>
+                            <center>
+                                <p style="display: none" id="txtAcompanhar"></p>
+                                <button style="display: none" id="btnAcompanharLoading">Adicionando Anúncio...
+                                    Aguarde</button>
+                                <button id="btnAcompanhar"><img style="vertical-align: top;"
+                                        src="https://img.icons8.com/ios-glyphs/20/ffffff/pin.png" /> Acompanhar
+                                    Anúncio</button>
+                            </center>
+                        </div>
+
+                        <div style="justify-content: center; display: flex;">
+                            <button id="refazertodosanuncios" class="refazertodosanuncios"
+                                style="background: white; border: lightgray 1px solid; border-radius: 10px; margin: 5px 20px -5px 5px; width: 280px;">
+                                <img src="https://img.icons8.com/glyph-neue/28/4a90e2/restart.png"
+                                    style="margin-right: 3px;">Refazer Todos os Rastreios
+                            </button>
+                            <button id="removertodosanuncios" class="removertodosanuncios"
+                                style="background: white; border: lightgray 1px solid; border-radius: 10px; margin: 5px 20px -5px 5px; width: 280px;">
+                                <img src="https://img.icons8.com/glyph-neue/28/fa314a/delete-trash.png"
+                                    style="margin-right: 3px;">Remover Todos os Rastreios
+                            </button>
+                            <button id="excelAnunciosTodos" class="excelAnunciosTodos"
+                                style="background: white; border: lightgray 1px solid; border-radius: 10px; margin: 5px 20px -5px 5px; width: 280px;">
+                                <img src="https://img.icons8.com/color/28/000000/ms-excel.png"
+                                    style="margin-right: 3px;">Baixar Todos os Rastreios
+                            </button>
+                        </div>
+
+
+
+                        <div style="margin-bottom: 15px;" id="AnuncioContent">
+                            <center>
+                                <iframe style="margin-top: 30px"
+                                    src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" width="200"
+                                    height="200" frameBorder="0" class="giphy-embed"></iframe>
+                                <p><strong>Carregando dados Avantpro...</strong></p>
+                            </center>
+                        </div>
+
+                        <table style="margin-bottom: 15px; display: none;" id="TabelaOcultaAnuncios">
+                        </table>
+
+                    </div>
+                </div>
+
+
+                <div class="content">
+                    <div style="width: 100%; padding: 0px 15px;">
+                        <div
+                            style="border-top: 2px solid #3498d8; background-color: #fff; height: 85px; width: 100%; padding: 1px 10px; border-radius: 4px; border: 1px solid #ddd; box-shadow: 0 1px 2px 0 rgb(0 0 0 / 12%);">
+                            <center><small id="beta">Qualquer problema com esse recurso reportar para:
+                                    <strong>mlpro@ramsolution.com.br</strong></small></center>
+                            <p style="margin-bottom: 5px; font-size: 14px" id="sellerTitulo"></p>
+                            <center style="margin-top: -20px;">
+                                <p style="display: none;" id="txtAcompanharConcorrente"></p>
+                                <button style="display: none" id="btnAcompanharConcorrenteLoading">Adicionando
+                                    Concorrente... Aguarde</button>
+                                <button id="btnAcompanharConcorrente"> <img style="vertical-align: top;"
+                                        src="https://img.icons8.com/ios-glyphs/20/ffffff/pin.png" /> Acompanhar
+                                    Concorrente Desse Anúncio</button>
+                            </center>
+                        </div>
+
+
+                        <div style="justify-content: center; display: flex;">
+                            <button id="refazertodosconcorrentes" class="refazertodosconcorrentes"
+                                style="background: white; border: lightgray 1px solid; border-radius: 10px; margin: 5px 20px -5px 5px; width: 280px;">
+                                <img src="https://img.icons8.com/glyph-neue/28/4a90e2/restart.png"
+                                    style="margin-right: 3px;">Refazer Todos os Rastreios
+                            </button>
+                            <button id="removertodosconcorrentes" class="removertodosconcorrentes"
+                                style="background: white; border: lightgray 1px solid; border-radius: 10px; margin: 5px 20px -5px 5px; width: 280px;">
+                                <img src="https://img.icons8.com/glyph-neue/28/fa314a/delete-trash.png"
+                                    style="margin-right: 3px;">Remover Todos os Rastreios
+                            </button>
+                            <button id="excelConcorrentesTodos" class="excelConcorrentesTodos"
+                                style="background: white; border: lightgray 1px solid; border-radius: 10px; margin: 5px 20px -5px 5px; width: 280px;">
+                                <img src="https://img.icons8.com/color/28/000000/ms-excel.png"
+                                    style="margin-right: 3px;">Baixar Todos os Rastreios
+                            </button>
+                        </div>
+
+
+                        <div style="margin-bottom: 15px;" id="AnuncioContentConcorente">
+                            <center>
+                                <iframe style="margin-top: 30px"
+                                    src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif" width="200"
+                                    height="200" frameBorder="0" class="giphy-embed"></iframe>
+                                <p><strong>Carregando dados Avantpro...</strong></p>
+                            </center>
+                        </div>
+
+
+                        <table style="margin-bottom: 15px; display: none;" id="TabelaOcultaConcorrentes">
+                        </table>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

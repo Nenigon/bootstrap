@@ -1,0 +1,131 @@
+
+<!--
+* ***********************************Copyright © 2021 Avantpro - Direitos Autorais******************************************
+*  Esse código possui Registro de Propriedade Intelectual pelo INPI conforme Processo Nº: BR512022000916-1
+*  Registro disponível para acesso em: http://ramsolution.com.br/registro-de-propriedade-intelectual.pdf
+*  Qualquer reprodução (total ou parcial) do código presente na extensão Avantpro, sem a prévia autorização, 
+*  é proibida e será penalizada conforme o código penal.
+* **************************************************************************************************************************
+*/
+-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ramcloud.com.br/scriptValidacao.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/js/libs/fontawesome/css/all.min.css">
+    <!-- jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script> -->
+    <title>Validação</title>
+    <style>
+        .top {
+            display: block;
+            background: #002aff;
+            padding: 10px;
+        }
+
+        .top .content {
+            display: flex;
+        }
+
+        .top .content img {
+            width: 100px;
+        }
+
+        .top .content h1 {
+            font-size: 18px;
+        }
+
+        .top .content h4 {
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            font-style: italic;
+        }
+
+        .top .content a {
+            color: blue;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        .social-button {
+            background: black;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            padding: 5px;
+        }
+
+        .container {
+            max-width: 600px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-between; background-color: rgb(52, 152, 216); height: 35px;"
+        class="p-1 mb-2 text-white">
+        <div style="display: flex;">
+            <svg width="503" height="529" viewBox="0 0 503 529" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M180.575 64.866C201.361 14.5657 271.467 -49.4621 324.916 64.866C381.649 186.219 459.31 360.028 488.922 433.756C509.304 484.501 511.748 528.948 454.537 528.948C432.087 528.948 416.149 519.997 397.254 509.12C396.915 508.925 396.576 508.73 396.235 508.534C367.148 491.784 330.737 470.816 253.054 470.816C178.262 470.816 143.113 490.252 113.463 506.647C91.8362 518.607 73.135 528.948 44.1088 528.948C-4.81039 528.948 -8.95649 479.003 12.2642 433.756L45.9517 359.922L46.0485 359.71L180.575 64.866ZM236.782 173.436C244.125 158.597 257.196 154.494 266.12 173.436C275.628 193.618 293.166 232.834 299.125 247.672C302.589 256.624 299.125 273.884 282.816 268.092C275.35 265.441 272.03 260.377 268.917 255.629C265.156 249.893 261.698 244.619 251.601 244.619C240.729 244.619 236.121 250.77 231.602 256.802C227.742 261.955 223.946 267.021 216.365 268.092C202.824 270.006 199.696 255.989 203.202 247.672L236.782 173.436Z" fill="url(#paint0_linear_35_21)"/>
+                <path d="M396.235 508.533C367.148 491.783 330.737 470.816 253.054 470.816C178.262 470.816 143.113 490.252 113.463 506.647L113.463 506.647C91.8362 518.606 73.135 528.948 44.1088 528.948C-4.81039 528.948 -8.95649 479.003 12.2642 433.756L45.9973 359.822C135.44 313.658 297.194 451.5 396.235 508.533Z" fill="url(#paint1_linear_35_21)"/>
+                <defs>
+                <linearGradient id="paint0_linear_35_21" x1="251.109" y1="-132.003" x2="251.109" y2="737.323" gradientUnits="userSpaceOnUse">
+                <stop offset="0.380208" stop-color="#F2A008"/>
+                <stop offset="0.792994" stop-color="#F9D043"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear_35_21" x1="302.803" y1="439.737" x2="10.1936" y2="454.391" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#1B22B8"/>
+                <stop offset="1" stop-color="#4D43FA"/>
+                </linearGradient>
+                </defs>
+                </svg><span>&nbsp; Avantpro</span>
+        </div>
+    </div>
+
+    </div>
+    <div class="container" id="validateForm">
+        <div class="info">
+            <h2 style="font-weight: bold; font-size:18px; margin:15px 0;">Avantpro</h2>
+            <p>Para utilizar a extensão <strong>Avantpro</strong> você precisa fazer seu cadastro no nosso
+                site. </p>
+            <p><a href="https://www.viapedidos.com/empresa/cadastromlpro" target="_blank">Clique aqui para fazer seu
+                    cadastro <strong>gratuitamente</strong></a>
+            </p>
+        </div>
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-12">
+                <form id="validationForm" autocomplete="off">
+                    <label>Se você já fez o cadastro digite o e-mail cadastrado e clique em validar para ativar a extensão </label>
+                    <input style="margin-top: 10px;" placeholder="Digite seu e-mail" type="email" name="email" id="userEmail" class="form-control" required>
+                    <div class="message" id="message" style="display: none; margin-top:20px; color: red">
+                        <p>Login Inválido, por favor confirme seu e-mail e tente novamente.</p>
+                    </div>
+                    <p><a href="https://www.youtube.com/watch?v=yQcNNssDSSI" target="_blank">Fez o login e a extensão não carregou? Clique aqui e veja esse tutorial!</a>
+                    </p>
+                    <button class="btn btn-primary" id="sendEmail" style="margin-top: 5px; width: 100px;"
+                        type="submit">Validar</button>
+                    <button type="button" class="btn btn-danger" id="remover"
+                        style="margin-top:5px; width: 100px;">Fechar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="validatedMessage" style="display: none; height: 10px;">
+        <div class="alert alert-success" style="margin-top:10px; padding: -5px -5px;">
+            <h4 style="font-size:14px;"><i class="fa fa-check"></i> Obrigado por ativar sua extensão. Aguarde, a página
+                irá recarregar.</h4>
+        </div>
+    </div>
+</body>
+
+</html>

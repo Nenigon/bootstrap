@@ -1,0 +1,223 @@
+
+<!--
+* ***********************************Copyright © 2021 Avantpro - Direitos Autorais******************************************
+*  Esse código possui Registro de Propriedade Intelectual pelo INPI conforme Processo Nº: BR512022000916-1
+*  Registro disponível para acesso em: http://ramsolution.com.br/registro-de-propriedade-intelectual.pdf
+*  Qualquer reprodução (total ou parcial) do código presente na extensão Avantpro, sem a prévia autorização, 
+*  é proibida e será penalizada conforme o código penal.
+* **************************************************************************************************************************
+*/
+-->
+
+<!DOCTYPE html>
+<html style="min-width: 500px;">
+
+<head>
+    <title>Avantpro</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+    
+    <script src="/src/js/libs/jquery.maskMoney.min.js"></script>
+    <script src="/src/js/libs/jquery-dateformat.min.js"></script>
+    <script src="/src/js/libs/moment.min.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            border: 0;
+            padding: 0;
+            display: block;
+            width: 500px;
+            overflow-x: hidden;
+            background-color: #ededed;
+        }
+
+        .inputcard {
+            width: 20px !important;
+        }
+
+        .default-table-height {
+            height: 45px;
+        }
+
+        .defaultsmall-table-height {
+            height: 15px;
+        }
+
+        .low-line {
+            height: 1.8rem;
+        }
+
+        .text-small {
+            font-size: 14px;
+        }
+
+        .ml-green {
+            background-color: #39b54a !important
+        }
+
+        .ml-lowgreen {
+            background-color: #cfee6f !important
+        }
+
+        .ml-yellow {
+            background-color: #fdf880 !important
+        }
+
+        .ml-organge {
+            background-color: #f5c827 !important
+        }
+
+        .ml-highorgange {
+            background-color: #ef9b76 !important
+        }
+
+        .ml-green-font {
+            color: #709979
+        }
+
+        .ml-blue-font {
+            color: #1E90FF;
+        }
+
+        .pgbar {
+            height: 10px;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+
+        .unselected {
+            opacity: 0.5;
+        }
+
+        .card-title {
+            font-size: 16px;
+        }
+
+        .card-content {
+            font-size: 14px;
+        }
+
+        .form-control {
+            height: 35px;
+        }
+
+        .obs {
+            font-size: 12px;
+            color: #84a2bc;
+            margin-left: -45px;
+        }
+
+        .footer-ext {
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+            background-color: #ededed;
+        }
+
+        .header-ext {
+            top: 0px;
+            width: 100%;
+            padding-bottom: 5px;
+            background-color: #ededed;
+        }
+
+        .card-content-vermelho {
+            font-size: 17px;
+            color: red;
+        }
+
+
+        .card-content-verde {
+            font-size: 17px;
+            color: #32CD32;
+        }
+
+        #custofinal {
+            color: red;
+            font-weight: bold;
+        }
+
+        #lucro {
+            color: #32CD32;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="p-1 mb-2 text-white" style="background-color: rgb(52, 152, 216);">
+        <svg width="503" height="529" viewBox="0 0 503 529" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M180.575 64.866C201.361 14.5657 271.467 -49.4621 324.916 64.866C381.649 186.219 459.31 360.028 488.922 433.756C509.304 484.501 511.748 528.948 454.537 528.948C432.087 528.948 416.149 519.997 397.254 509.12C396.915 508.925 396.576 508.73 396.235 508.534C367.148 491.784 330.737 470.816 253.054 470.816C178.262 470.816 143.113 490.252 113.463 506.647C91.8362 518.607 73.135 528.948 44.1088 528.948C-4.81039 528.948 -8.95649 479.003 12.2642 433.756L45.9517 359.922L46.0485 359.71L180.575 64.866ZM236.782 173.436C244.125 158.597 257.196 154.494 266.12 173.436C275.628 193.618 293.166 232.834 299.125 247.672C302.589 256.624 299.125 273.884 282.816 268.092C275.35 265.441 272.03 260.377 268.917 255.629C265.156 249.893 261.698 244.619 251.601 244.619C240.729 244.619 236.121 250.77 231.602 256.802C227.742 261.955 223.946 267.021 216.365 268.092C202.824 270.006 199.696 255.989 203.202 247.672L236.782 173.436Z" fill="url(#paint0_linear_35_21)"/>
+            <path d="M396.235 508.533C367.148 491.783 330.737 470.816 253.054 470.816C178.262 470.816 143.113 490.252 113.463 506.647L113.463 506.647C91.8362 518.606 73.135 528.948 44.1088 528.948C-4.81039 528.948 -8.95649 479.003 12.2642 433.756L45.9973 359.822C135.44 313.658 297.194 451.5 396.235 508.533Z" fill="url(#paint1_linear_35_21)"/>
+            <defs>
+            <linearGradient id="paint0_linear_35_21" x1="251.109" y1="-132.003" x2="251.109" y2="737.323" gradientUnits="userSpaceOnUse">
+            <stop offset="0.380208" stop-color="#F2A008"/>
+            <stop offset="0.792994" stop-color="#F9D043"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_35_21" x1="302.803" y1="439.737" x2="10.1936" y2="454.391" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#1B22B8"/>
+            <stop offset="1" stop-color="#4D43FA"/>
+            </linearGradient>
+            </defs>
+            </svg><span>&nbsp; Avantpro</span>
+    </div>
+    <div class="container" style="background-color: #eeeeee;">
+        <div class="container header">
+            <div class="row justify-content-md-center">
+                <div class="col-8">
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <div class="container" style="background-color: #ededed;">
+
+
+
+
+            <div class="row">
+                <div class="card" style="width: 465px;">
+                    <div class="card-body" style="width: 465px">
+                        <h5 class="card-title ml-blue-font">Tendências</h5>
+                        <div class="container">
+                            <div class="row default-table-height">
+                                <div class="col col-sm-6">
+                                    <p class="card-text card-content"><svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="19" viewBox="0 0 24 24">
+                                            <path
+                                                d="M24 3.875l-6 1.221 1.716 1.708-5.351 5.358-3.001-3.002-7.336 7.242 1.41 1.418 5.922-5.834 2.991 2.993 6.781-6.762 1.667 1.66 1.201-6.002zm0 16.125v2h-24v-20h2v18h22z" />
+                                        </svg> Comiss&atilde;o ML</p>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <label id="comissao"></label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</body>
+
+</html>
